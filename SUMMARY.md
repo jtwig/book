@@ -1,5 +1,5 @@
 # Summary
 
 * [Introduction](README.md)
-* Syntax
+* [Syntax](syntax.md)
 
