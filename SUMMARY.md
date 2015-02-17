@@ -1,6 +1,6 @@
 # Summary
 
 * [Introduction](README.md)
-   * Template Languages
+* Template Languages
 * [Syntax](syntax.md)
 
