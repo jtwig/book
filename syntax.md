@@ -1,19 +1,27 @@
 # Syntax
 
 <p style="text-align: justify;">
-As already been said, Jtwig is a Twig port to java, as so, compatibility between Jtwig and Twig is a primary objective. However, Jtwig does not support all features Twig has and it also includes some small differences on the syntax level. Within this section one will explain the Jtwig syntax in detail, the differences between Jtwig and Twig and the reasons behind them.
+Jtwig is a Twig port to Java, because of that Jtwig and Twig are very similar. However, Jtwig does not support all Twig features Twig, it contains functionality Twig does not offer and, finally, it also includes some small, yet important, differences at the syntax level. Within this section one will explain the Jtwig syntax in detail with special focus on the differences between Jtwig and Twig with the reasons behind such differences.
+</p>
+
+<p style="text-align: justify;">
+Another aspect we will focus on in this book is comparison with other template engines in terms of functionality, specially the most widely used ones in the Java world.
+</p>
+
+<p style="text-align: justify;">
+As a template language Jtwig allows one to have formatting logic around content. In order to do so, Jtwig uses the so called **Code Islands**.
 </p>
 
 ## Code Islands
 
 <p style="text-align: justify;">
-As almost all template languages, Jtwig constructs can be specified using code islands.
+As almost all template languages, Jtwig constructs can only be specified using code islands.
 </p>
 
     {% ... Jtwig code here ... %}
 
 <p style="text-align: justify;">
-So, Jtwig code islands begin with `{%` and ends with `%}`, just as simple as that and exacly the same as Twig.
+Jtwig code islands begin with `{%` and ends with `%}`, just as simple as that and exactly the same as Twig.
 </p>
 
 <p style="text-align: justify;">This differs from other template engines like [Thymeleaf](http://www.thymeleaf.org/) which constructs are defined with embedded code. Code islands allows to make a clear separation between template engine specific logic and the content, which is easier to read, locate and therefore to maintain.
