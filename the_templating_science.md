@@ -16,7 +16,7 @@ In essence, a template engine allows one to split the content from its presentat
 Yes, `String.format` can be seen as a template engine, a really simple one, but it does allow us to split the content from its presentation. Where the content is `30` which when combined with the **template** `Hello, I am %d years old` generates the output `Hello, I am 30 years old`.
 </p>
 
-## Nomenclature
+#### Nomenclature
 
 <p style="text-align: justify;">
 In just few sentences we spoke about some simple, widely used yet not properly defined terms, *template engine* and *template*.
@@ -31,7 +31,7 @@ In just few sentences we spoke about some simple, widely used yet not properly d
 </p>
 
 
-## Why template engines?
+### Why template engines?
 
 <p style="text-align: justify;">
 The main advantage of using a template engine is to split up the presentation layer from the logic layer. Of course, splitting a system into smaller components has its advantages and disadvantages, all of those already scrutinized a lot, but when it comes to splitting the presentation layer from the logic layer there are other aspects to take into account:
@@ -56,7 +56,7 @@ Another benefit of splitting up this two layers is to simplify the maintenance d
 As tools written specifically for the development of the presentation logic, template engines represent an advantage in terms of effective cost for developing it providing various number of functionalities in that regard.
 </p>
 
-## How to choose which template engine to use?
+### How to choose which template engine to use?
 
 <p style="text-align: justify;">
 Essa é uma questão interessante (ver opiniões na web), que gera opiniões divergentes. Genericamente, partindo do seu fundamento principal, um bom sistema de template é (1) aquele que permite fazer uma boa separação entre camada de apresentação e camada de controlo. Neste contexto, para decidir qual sistema de template usar, é necessário analisar também qual o design pattern escolhido, do qual o sistema de template faz parte.
