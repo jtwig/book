@@ -47,7 +47,11 @@ Another benefit of splitting up this two layers is to simplify the maintenance d
 </p>
 
 <p style="text-align: justify;">
-Um outro motivo para a utilizaçao de sistemas de template é a simplicidade, isto é, recorrendo a funcionalidades inatas dos sistemas de template torna-se mais simples especificar o formato da camada de apresentação.
+"**Template engines eases the presentation layer development**"
+</p>
+
+<p style="text-align: justify;">
+As tools written specifically for the development of the presentation logic, template engines represent an advantage in terms of effective cost for developing it providing various number of functionalities in that regard.
 </p>
 
 ## How to choose which template engine to use?
