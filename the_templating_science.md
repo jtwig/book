@@ -59,6 +59,13 @@ As tools written specifically for the development of the presentation logic, tem
 ### How to choose which template engine to use?
 
 <p style="text-align: justify;">
+Each template engine has its advantages and disadvantages. But there are aspects that can be used to make decisions on which template engine to use.
+</p>
+
+1. Context
+2. Nature of the project
+3. Knowledge in the team
+
 Essa é uma questão interessante (ver opiniões na web), que gera opiniões divergentes. Genericamente, partindo do seu fundamento principal, um bom sistema de template é (1) aquele que permite fazer uma boa separação entre camada de apresentação e camada de controlo. Neste contexto, para decidir qual sistema de template usar, é necessário analisar também qual o design pattern escolhido, do qual o sistema de template faz parte.
 </p>
 
