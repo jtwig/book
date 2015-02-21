@@ -5,11 +5,11 @@ Welcome to the Jtwig Reference Manual. This book is intended to be used as docum
 </p>
 
 <p style="text-align: justify;">
-I have started this book with the main reason to add good documentation support to Jtwig, but also to study the language and therefore improving it by providing a consistent view.
+I have started this book with the main reason to add good documentation support to Jtwig, but also to study the language and therefore improving it by writing down a consistent view of it.
 </p>
 
 <p style="text-align: justify;">
-Although Jtwig is based on Twig, which is a well known language, heavily used by thousands of developers, studying the differences between them and even the differences to other templating engines allowed me to discover interesting factors when deciding which template language to use in specific scenarios. Specially, how much that choice affects the different phases rendering a page and the system architecture.
+Although Jtwig is based on Twig, which is a well known language, heavily used by thousands of developers, studying the differences between them and even the differences to other templating engines allowed me to discover interesting factors to decide which template language to use in specific scenarios. Specially, how much that choice can affect an entire project.
 </p>
 
 <p style="text-align: justify;">
