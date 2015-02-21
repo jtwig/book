@@ -1,27 +1,49 @@
 # The Templating Science
 
 <p style="text-align: justify;">
-Para melhor perceber a problemática dos sistemas de templates é necessário olhar para o seu contributo numa análise profunda, que começa, como é natural, pelas suas bases.
+To better understand the fundations of template engines it is best to start by have a clear understanding what template engines are meant to do, what do projects benefit from using them and then how their design affects the project, from the system design to its maintainability.
 </p>
 
 <p style="text-align: justify;">
-Na sua essencia um sistema de template resume-se a, partindo do conteudo, produzir texto apresentavel. Olhemos, por exemplo, para um dos mais basicos sistema de template existente.
+In essence, a template engine allows one to split the content from its presentation/formatting. Let's take a look to one of the simpliest template engines on earth - the Java native `String.format`.
 </p>
 
     String.format("Hello, I am %d years old", 30);
 
 <p style="text-align: justify;">
-Sim, um simples `String.format` é um sistema de template. Como se pode observar, o conteudo é o valor `30` que quando combinado com o **template** - `"Hello, I am %d years old"`, isto é, a representação intermédia do sistema de template `String.format`, gera como resultado a frase `"Hello, I am 30 years old"`.
+Yes, `String.format` can be seen as a template engine, a really simple one, but it does allow us to split the content from its presentation. Where the content is `30` which when combined with the **template** `Hello, I am %d years old` generates the output `Hello, I am 30 years old`.
 </p>
+
+## Nomenclature
+
+<p style="text-align: justify;">
+In just few sentences we spoke about some simple, widely used yet not properly defined terms, *template engine* and *template*.
+</p>
+
+<p style="text-align: justify;">
+**Template** Is an intermediate representation of the presentation. It specifies the rules that defines on how the output should be generated.
+</p>
+
+<p style="text-align: justify;">
+**Template Engine** Is the component responsible of generating the output, it implements the rules specified in the template which together with the specified content assembles the final presentation.
+</p>
+
 
 ## Why template engines?
 
 <p style="text-align: justify;">
-Um dos grandes objetivos dos sistemas de templates passa por separar a camada de apresentação da camada lógica, permitindo dessa forma uma manutenção facilitada, aumentar drasticamente a testabilidade, bem como tornar os processos de desenvolvimento, tanto da componente lógica, como da componente de apresentação. Isto permite, como é obvio, aumentar a qualidade do codigo.
+The main advantage of using a template engine is to split up the presentation layer from the logic layer. Of course, splitting a system into smaller components has its advantages and disadvantages, all of those already scrutinized a lot, but when it comes to splitting the presentation layer from the logic layer there are other aspects to take into account:
+</p>
+
+1. Different domains of knowledge
+2. Different change rates
+
+<p style="text-align: justify;">
+When it comes to work on the presentation layer, for example, web technologies, there is a huge number of different languages and technologies that can be applied. Of course the same happens with the logic layer. Given the volume of technologies and required knowledge to handle them, splitting up this two decreases the need for full stack developers, which are more expensive. But also, allows expertise on each specific area to be fully used.
 </p>
 
 <p style="text-align: justify;">
-Uma das grandes vantagens da utilização de templating num projeto é a vantagem inerente á separação do sistema em componentes mais pequenos, falamos nomeadamente da  testability. Isto é, ao criar um componente apenas responsavel pela geração de conteudo torna-se possivel validar o comportamento desse componente de forma isolada, tornando o teste muito mais simples quando comparado com o teste do resultado da composição de ambos.
+Another benefit of splitting up this two layers is to simplify the maintenance due to the rate of change. In the initial stages of a project both layers have a similar change rate, however, when the project stabilizes, during the maintenance phase, the presentation layer would be more subject to change. By having this layers splitted no changes would be made to the logic layer for the purpose of modifying the presentation. Making the maintenance easier and therefore cheaper.
 </p>
 
 <p style="text-align: justify;">
