@@ -62,14 +62,16 @@ As tools written specifically for the development of the presentation logic, tem
 Each template engine has its advantages and disadvantages. But there are important aspects to consider while deciding which template engine to use.
 </p>
 
-1. Team knowledge
-2. Development process
-3. Project Specific Constraints
-4. Project Vision
+**Project Specific Constraints**
 
 <p style="text-align: justify;">
-The first aspect one should consider is the development team. Do you have knowledge in your team to use any template engine? Is your team composed of only full stack developers, so that you do not really need a clear separation of layers?
+**NOTE**: An important aspect to keep in mind is that the Template Engine mechanism is generic, it is designed to allow a lot of different scenarios and therefore it is slow when compared to systems directly handling the presentation layer. There is no way a template engine can be faster than a system that addresses the output generation directly. As so, it is important to understand that projects with really high demand on the rendering speed should consider not using template engines at all. Of course, speed is important in every project, but given the set of template engines currently being used, the need for speed is low. The slowest template engines can perform in a reasonably good amount of time and most of them can be cache templates which drops even more the importance of the speed factor as a deciding factor. Let the speed factor be decisive when no other factor works out a winner.
 </p>
+
+<p style="text-align: justify;">
+One important aspect to consider is the project specific constraints. Each project can limit the choices to a short number of possibilities very quickly. It is important to understand how expensive would be to adopt a specific template engine, usually, the cheaper wins.
+</p>
+
 Essa é uma questão interessante (ver opiniões na web), que gera opiniões divergentes. Genericamente, partindo do seu fundamento principal, um bom sistema de template é (1) aquele que permite fazer uma boa separação entre camada de apresentação e camada de controlo. Neste contexto, para decidir qual sistema de template usar, é necessário analisar também qual o design pattern escolhido, do qual o sistema de template faz parte.
 </p>
 
