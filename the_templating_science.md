@@ -56,16 +56,20 @@ Another benefit of splitting up this two layers is to simplify the maintenance d
 As tools written specifically for the development of the presentation logic, template engines represent an advantage in terms of effective cost for developing it providing various number of functionalities in that regard.
 </p>
 
-### How to choose which template engine to use?
+### Which template engine to use?
 
 <p style="text-align: justify;">
-Each template engine has its advantages and disadvantages. But there are aspects that can be used to make decisions on which template engine to use.
+Each template engine has its advantages and disadvantages. But there are important aspects to consider while deciding which template engine to use.
 </p>
 
-1. Context
-2. Nature of the project
-3. Knowledge in the team
+1. Team knowledge
+2. Development process
+3. Project Specific Constraints
+4. Project Vision
 
+<p style="text-align: justify;">
+The first aspect one should consider is the development team. Do you have knowledge in your team to use any template engine? Is your team composed of only full stack developers, so that you do not really need a clear separation of layers?
+</p>
 Essa é uma questão interessante (ver opiniões na web), que gera opiniões divergentes. Genericamente, partindo do seu fundamento principal, um bom sistema de template é (1) aquele que permite fazer uma boa separação entre camada de apresentação e camada de controlo. Neste contexto, para decidir qual sistema de template usar, é necessário analisar também qual o design pattern escolhido, do qual o sistema de template faz parte.
 </p>
 
