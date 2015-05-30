@@ -1,6 +1,6 @@
 # Summary
 
 * [Preface](README.md)
-* [The Templating Science](the_templating_science.md)
+* [Template Engines](template_engines.md)
 * [Syntax](syntax.md)
 
