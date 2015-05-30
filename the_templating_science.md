@@ -1,9 +1,9 @@
-# Chapter 1 : The Templating Science
+# Chapter 1 : Template Engines
 
 ## Introduction
 
 <p style="text-align: justify;">
-To better understand the fundations of template engines it is best to start by making clear what template engines are meant to do, what do projects benefit from using them and then how their design affects the project, from the system design to its maintainability.
+To better understand the foundations of template engines it is best to start by making clear what template engines are meant to do, what do projects benefit from using them and then how their design affects the project, from the system design to its maintainability.
 </p>
 
 <p style="text-align: justify;">
