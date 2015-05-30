@@ -1,24 +1,11 @@
 # Preface
 
 <p style="text-align: justify;">
-Welcome to the Jtwig Reference Manual. This book is intended to be used as documentation support for Jtwig (http://jtwig.org), a templating language specifically designed for web development.
-</p>
-
-<p style="text-align: justify;">
-I have started this book with the main reason to add good documentation support to Jtwig, but also to study the language and therefore improving it by writing down a consistent view of it.
-</p>
-
-<p style="text-align: justify;">
-Although Jtwig is based on Twig, which is a well known language, heavily used by thousands of developers, studying the differences between them and even the differences to other templating engines allowed me to discover interesting factors to decide which template language to use in specific scenarios. Specially, how much that choice can affect an entire project.
-</p>
-
-<p style="text-align: justify;">
-If you do not know which template language to choose, I would highly recommend you to read the first chapter of this book.
+Welcome to the Jtwig Reference Manual. This book was created to serve as documentation support for [Jtwig](http://jtwig.org) users. Although Jtwig is based on Twig, an already well established technology and heavily used by thousands of developers, studying the differences between Jtwig and Twig, also as, the Jtwig differences against other templating engines will allow one to learn about the advantages and disadvantages of using Jtwig, specially, how can such choice affect a project.
 </p>
 
 ## Audience
 
 <p style="text-align: justify;">
-This book can be read by anyone knowledgeable about web development. Java language is also a nice to have, but only for advanced chapters of this book.
-</p>
+This book can be read by anyone knowledgeable about web development. Java language is also a requirement, but only for advanced chapters of this book.
 </p>
