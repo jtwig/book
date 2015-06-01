@@ -11,13 +11,14 @@ A template engine is a piece of software designed to combine a template with dat
 </p>
 
 <p style="text-align: justify;">
-Let's take a look to one of the simplest template engines - the Java native `String.format`.
+Let's take a look to one of the simplest template engines - the Java native <code>String.format</code>.
 </p>
+
 
     String.format("Hello, I am %d years old", 30);
 
 <p style="text-align: justify;">
-Yes, String.format can be seen as a template engine, a really simple one. In the previous example, the content is the integer `30` which, when combined with the template Hello, `I am %d years old`, generates the output `Hello, I am 30 years old`.
+Yes, String.format can be seen as a template engine, a really simple one. In the previous example, the content is the integer <code>30</code> which, when combined with the template Hello, <code>I am %d years old</code>, generates the output <code>Hello, I am 30 years old</code>.
 </p>
 
 ## Why template engines? 
