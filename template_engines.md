@@ -1,6 +1,4 @@
-# Chapter 1 : Template Engines
-
-# Introduction
+# Template Engines
 
 <p style="text-align: justify;">
 To better understand the foundations of template engines it is best to start by clarifying what they are and what they do. What do projects benefit from using them and how do they affect projects, from the system design to its maintainability.
