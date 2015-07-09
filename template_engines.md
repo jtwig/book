@@ -39,12 +39,12 @@ Another reason to adopt template engines is that, as tools written specifically 
 ## Why Jtwig?
 
 <p style="text-align: justify;">
-Jtwig appears from the desire of a better template engine in the Java world. After investigating all technologies available in the market, one decided to, instead of creating a brand new technology, port one good template engine to the Java world, mainly because one could only benefit from an already mature technology, heavily used and proven in the wild. Twig which is based on Django templates itself, was the choice. It was seen as the best alternative because of the following reasons:
+Jtwig appears from the desire of a better template engine in the Java world. After investigating all technologies available in the market, one decided to, instead of creating a brand new technology, port one good template engine to the Java world, mainly because one could only benefit from an already mature technology, heavily used and proven in the wild. Twig which is based on Django templates itself, was the choice. It was seen as the best alternative given the following arguments:
 </p>
 
-- Code island based, making it easier to read when mixed with presentation content;
-- Small learning curve, easy and common syntactic constructs, in fact, for Java developers, Jtwig has very similar building blocks;
-- Simple yet powerful template inheritance mechanism;
+- Code island based syntax, making it easier to read when mixed with presentation content;
+- Small learning curve, easy and common syntactic constructs, in fact, for Java developers, Jtwig represents a small deviation from Java syntax;
+- Simple yet powerful modularization mechanism;
 - Great expressive power with the capability to create logical complex templates;
 
 
