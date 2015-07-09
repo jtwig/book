@@ -114,28 +114,188 @@ Unary operators by definition only need one argument, Jtwig comes with only two 
 Jtwig comes with several built in binary operators. Below, one will describe the entire list of built in binary operators.
 </p>
 
-
-| Operator | Symbol | P | Description | Example |
-|----------|--------|---|-------------|---------|
-| Selection | `.` | 1 | Access inner properties of objects. Selection will be detailed further. | `var.test` |
-| Multiply | `*` | 5 | Multiplies two values. | `2.2 * 2.2` outputs `4.4` |
-| Integer Multiply | `**` | 5 | Multiplies the integer part of two values. | `2.2 * 2.2` outputs `4` |
-| Divide | `/` | 5 | Divides two values. | `2.2 * 2.2` outputs `1.1` |
-| Integer Divide | `//` | 5 | Divides the integer part of two values. | `2.2 * 2.2` outputs `1` |
-| Remainder | `%` | 5 | Gets the integer division remainder. | `5 % 2` outputs `1` |
-| Sum | `+` | 10 | Sums two values. | `5 + 2` outputs `7` |
-| Subtract | `-` | 10 | Subtracts two values. | `5 - 2` outputs `3` |
-| Less | `<` | 15 | Compares two values, checking whether the first is lower than the second. | `1 < 2` outputs `true` </br> `1 < 1` outputs `false` |
-| Less or equal | `<=` | 15 | Compares two values, checking whether the first is lower or equal than the second. | `2 <= 2` outputs `true` </br> `2 < 1` outputs `false` |
-| Greater | `>` | 15 | Compares two values, checking whether the first is higher than the second. | `2 > 1` outputs `true` </br> `2 > 2` outputs `false` |
-| Greater or equal | `>=` | 15 | Compares two values, checking whether the first is higher or equal than the second. | `2 >= 2` outputs `true` </br> `2 >= 3` outputs `false` |
-| Contains | `in` | 15 | Checks whether the second value contains the first one. | `5 in [2]` outputs `false` |
-| Equivalent | `==` | 20 | Compares two values, checking whether they are equal or not. | `true == false` outputs `false` </br> `false == false` outputs `true` |
-| Different | `!=` | 20 | Compares two values, checking whether they are different or not. | `true != false` outputs `true` </br> `false != false` outputs `false` |
-| And | `and` | 25 | Conjunction boolean operator. | `true and false` outputs `false` </br> `true and true` outputs `true` |
-| Or | `or` | 25 | Disjunction boolean operator. | `true or false` outputs `true` </br> `false or false` outputs `false` |
-| Compose | <code>&#124;</code> | 30 | Uses the first argument as parameter for the second argument. Note that, composition forces the second argument to be a function. | <code>-5 &#124; abs</code> outputs `5` |
-
+<table>
+    <thead>
+        <tr>
+            <th style="width: 10%;">Operator</th>
+            <th>Symbol</th>
+            <th>P</th>
+            <th style="width: 30%;">Description</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Selection</td>
+            <td style="text-align: center;"><code>.</code></td>
+            <td style="text-align: center;">1</td>
+            <td>Access inner properties of objects.</td>
+            <td><code>[1, 2].size</code> outputs <code>2</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Multiply</td>
+            <td style="text-align: center;"><code>*</code>
+            </td>
+            <td style="text-align: center;">5</td>
+            <td>Multiplies two values.</td>
+            <td><code>2.2 * 2.2</code> outputs <code>4.4</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Integer Multiply</td>
+            <td style="text-align: center;"><code>**</code>
+            </td>
+            <td style="text-align: center;">5</td>
+            <td>Multiplies the integer part of two values.</td>
+            <td><code>2.2 * 2.2</code> outputs <code>4</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Divide</td>
+            <td style="text-align: center;"><code>/</code>
+            </td>
+            <td style="text-align: center;">5</td>
+            <td>Divides two values.</td>
+            <td><code>2.2 * 2.2</code> outputs <code>1.1</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Integer Divide</td>
+            <td style="text-align: center;"><code>//</code>
+            </td>
+            <td style="text-align: center;">5</td>
+            <td>Divides the integer part of two values.</td>
+            <td><code>2.2 * 2.2</code> outputs <code>1</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Remainder</td>
+            <td style="text-align: center;"><code>%</code>
+            </td>
+            <td style="text-align: center;">5</td>
+            <td>Gets the integer division remainder.</td>
+            <td><code>5 % 2</code> outputs <code>1</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Sum</td>
+            <td style="text-align: center;"><code>+</code>
+            </td>
+            <td style="text-align: center;">10</td>
+            <td>Sums two values.</td>
+            <td><code>5 + 2</code> outputs <code>7</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Subtract</td>
+            <td style="text-align: center;"><code>-</code>
+            </td>
+            <td style="text-align: center;">10</td>
+            <td>Subtracts two values.</td>
+            <td><code>5 - 2</code> outputs <code>3</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Less</td>
+            <td style="text-align: center;"><code>&lt;</code>
+            </td>
+            <td style="text-align: center;">15</td>
+            <td>Compares two values, checking whether the first is lower than the second.</td>
+            <td><code>1 &lt; 2</code> outputs <code>true</code>
+                <br> <code>1 &lt; 1</code> outputs <code>false</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Less or equal</td>
+            <td style="text-align: center;"><code>&lt;=</code>
+            </td>
+            <td style="text-align: center;">15</td>
+            <td>Compares two values, checking whether the first is lower or equal than the second.</td>
+            <td><code>2 &lt;= 2</code> outputs <code>true</code>
+                <br> <code>2 &lt; 1</code> outputs <code>false</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Greater</td>
+            <td style="text-align: center;"><code>&gt;</code>
+            </td>
+            <td style="text-align: center;">15</td>
+            <td>Compares two values, checking whether the first is higher than the second.</td>
+            <td><code>2 &gt; 1</code> outputs <code>true</code>
+                <br> <code>2 &gt; 2</code> outputs <code>false</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Greater or equal</td>
+            <td style="text-align: center;"><code>&gt;=</code>
+            </td>
+            <td style="text-align: center;">15</td>
+            <td>Compares two values, checking whether the first is higher or equal than the second.</td>
+            <td><code>2 &gt;= 2</code> outputs <code>true</code>
+                <br> <code>2 &gt;= 3</code> outputs <code>false</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Contains</td>
+            <td style="text-align: center;"><code>in</code>
+            </td>
+            <td style="text-align: center;">15</td>
+            <td>Checks whether the second value contains the first one.</td>
+            <td><code>5 in [2]</code> outputs <code>false</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Equivalent</td>
+            <td style="text-align: center;"><code>==</code>
+            </td>
+            <td style="text-align: center;">20</td>
+            <td>Compares two values, checking whether they are equal or not.</td>
+            <td><code>true == false</code> outputs <code>false</code>
+                <br> <code>false == false</code> outputs <code>true</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Different</td>
+            <td style="text-align: center;"><code>!=</code>
+            </td>
+            <td style="text-align: center;">20</td>
+            <td>Compares two values, checking whether they are different or not.</td>
+            <td><code>true != false</code> outputs <code>true</code>
+                <br> <code>false != false</code> outputs <code>false</code>
+            </td>
+        </tr>
+        <tr>
+            <td>And</td>
+            <td style="text-align: center;"><code>and</code>
+            </td>
+            <td style="text-align: center;">25</td>
+            <td>Conjunction boolean operator.</td>
+            <td><code>true and false</code> outputs <code>false</code>
+                <br> <code>true and true</code> outputs <code>true</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Or</td>
+            <td style="text-align: center;"><code>or</code>
+            </td>
+            <td style="text-align: center;">25</td>
+            <td>Disjunction boolean operator.</td>
+            <td><code>true or false</code> outputs <code>true</code>
+                <br> <code>false or false</code> outputs <code>false</code>
+            </td>
+        </tr>
+        <tr>
+            <td>Compose</td>
+            <td style="text-align: center;"><code>|</code>
+            </td>
+            <td style="text-align: center;">30</td>
+            <td>Uses the first argument as parameter for the second argument. Note that, composition forces the second argument to be a function.</td>
+            <td><code>-5 | abs</code> outputs <code>5</code>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 
 ### Ternary Operator
