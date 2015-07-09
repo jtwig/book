@@ -18,7 +18,7 @@ Let's take a look to one of the simplest template engines - the Java native <cod
     String.format("Hello, I am %d years old", 30);
 
 <p style="text-align: justify;">
-Yes, String.format can be seen as a template engine, a really simple one. In the previous example, the content is the integer <code>30</code> which, when combined with the template Hello, <code>I am %d years old</code>, generates the output <code>Hello, I am 30 years old</code>.
+Yes, String.format can be seen as a template engine, a really simple one. In the previous example, the content is the integer <code>30</code> which, when combined with the template <code>Hello, I am %d years old</code>, generates the output <code>Hello, I am 30 years old</code>.
 </p>
 
 ## Why template engines? 
