@@ -1,62 +1,3 @@
-# Syntax
-
-<p style="text-align: justify;">
-Jtwig is a Twig port to Java, however, it does not support all Twig features and also includes functionality Twig does not offer. Syntax wise, they do also differ. This difference is due to Java environment specifics. To allow the engine to take full advantage of its mother language, some fundamental changes were introduced. Within this section one will detail Jtwig syntax, making a comparison, whenever sensible, with Twig.
-</p>
-
-## Code Islands
-
-<p style="text-align: justify;">
-As a template language, Jtwig allows one to have formatting logic around content. In order to do so, Jtwig uses the so called Code Islands. This is similar to many template languages and identical to Twig’s syntax.
-</p>
-
- 	{{ '{%' }} ... Jtwig code here ... {{ '%}' }}
-
-<p style="text-align: justify;">
-Jtwig code islands begin with <code>{{ '{%' }}</code> and ends with <code>{{ '%}' }}</code>, just as simple as that.
-</p>
-
-## White space control
-
-<p style="text-align: justify;">
-Tied up with the code island syntax is another syntactical enabled feature, 100% compatible with Twig, the white space control functionality. This allows one to remove white spaces before or after a code island. In order to accomplish that, append/prepend the symbol <code>-</code> to the beginning/ending of the Jtwig code island. Let's take for example:
-</p>
-
-    {% ... jtwig code ... -%} text {%- ... jtwig code ... %}
-
-<p style="text-align: justify;">
-Such code will produce <code>text</code> without white spaces. 
-</p>
-
-## Comments
-
-<p style="text-align: justify;">
-In Jtwig there are only multiline comments.
-</p>
-
-    {# This is the content of the comment. 
-    And it can be a multi-line content.  #}
-
-<p style="text-align: justify;">
-Note that comments also support the white space control feature, using the same approach as per code islands.
-</p>
-
-    {#- Comment... -#}
-
-## Output
-
-<p style="text-align: justify;">
-In Jtwig there is only one way to write the value of an expression (the definition of expression will be detailed afterwards) to the output. That is accomplished with the print operation as shown below.
-</p>
-
-    {{ expression... }}
-
-<p style="text-align: justify;">
-Output constructs also support whitespace control feature in the same way as code islands.
-</p>
-
-    {{- expression... -}}
-
 ## Expressions
 
 <p style="text-align: justify;">
@@ -260,4 +201,3 @@ This strategy searches for fields with the exact same name as provided, the name
 <p style="text-align: justify;">
 Is a strategy that only works against map objects and basically represents another way of accessing values in a map using the key as the property name.
 </p>
-
