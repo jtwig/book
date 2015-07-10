@@ -1,3 +1,4 @@
 #TODO
 
 - Configurations
+- Resource resolution
