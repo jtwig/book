@@ -42,3 +42,23 @@ A common operation over streams is the <code>flush</code> operation. As a templa
 {% flush %}
 ```
 
+
+## `autoescape` construct
+
+<p style="text-align: justify;">
+The <code>autoescape</code> construct allows one to set the escape mode to the given content. The escaping modes currently available are:
+</p>
+
+* `false` - No escaping at all
+* `'js'` or `'javascript'` - Javascript escaping mode
+* `html` - Escaping special HTML characters
+
+```twig
+{% autoescape 'html' %}
+<a href="#">Link</a>
+{% endautoescape %}
+```
+
+<p style="text-align: justify;">
+Later on one will describe how does the escaping functionality works behind the scenes.
+</p>
