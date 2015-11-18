@@ -20,6 +20,7 @@
   * [Others Tags](tags/other.md)
 * [Functions](functions/README.md)
 * [Jtwig Core](engine/README.md)
-* [Configurations](configuration/README.md)
+  * [Environment](engine/environment.md)
+  * [Resource](engine/resources.md)
 * [Resources](resources/README.md)
 * [Glossary](GLOSSARY.md)

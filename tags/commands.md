@@ -60,5 +60,5 @@ The <code>autoescape</code> construct allows one to set the escape mode to the g
 ```
 
 <p style="text-align: justify;">
-Later on one will describe how does the escaping functionality works behind the scenes.
+The escaping functionality is attached to the very end of the rendering pipeline as explained in Jtwig Core > Rendering pipeline.
 </p>

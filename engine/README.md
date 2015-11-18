@@ -1,98 +1,63 @@
 # Jtwig Core
 
 <p style="text-align: justify;">
-Within this section one will detail how to work with Jtwig at it's core. First, let's start defining a Jtwig Template.
+Within this section one will detail how to work with Jtwig at it's core API. As a template engine, Jtwig has three main concepts, they are <b>Environment</b>, <b>Resource</b> and <b>Model</b>.
 </p>
 
->  A **Jtwig Template** is a pair containing a **resource** and an **environment**. Where the resource represents the intermediate Jtwig representation (the template itself) and the environment configured behaviour and properties used to render the template.
-
-```java
-// Jtwig Template Dependencies
-Resource resource = new ...;
-Environment environment = new ...;
-// Jtwig Template Creation
-JtwigTemplate jtwigTemplate = new JtwigTemplate(resource, environment);
 ```
-
-## Resources
+Output = (Environment, Resource, Model)
+```
 
 <p style="text-align: justify;">
-Resources in Jtwig can be one of the following types:
+The <b>Environment</b> contains all Jtwig configurations and predefined behaviour, this includes possible extensions that might be added. The <b>Resource</b> contains the intermediate Jtwig representation, also known as Template and the <b>Model</b> is the container of key and value pairs which combined with the Template generates the output. We can break it down in the following way.
 </p>
 
-- **`StreamResource`**, it's the most basic resource, it basically exposes a given stream as a Jtwig resource. Use this specific implementation with caution, be aware of `InputStream` statefull properties. Also this implementation has serious limitations when it comes to cache parsed Jtwig templates. Example:
-
-```java
-InputStream inputStream = new ...;
-Resource resource = new StreamResource(inputStream);
 ```
-
-- **`StringResource`**, a resource supporting Jtwig Template specifications using a Java String. This type of resource is useful to specify templates inlined with the code.
-
-```java
-Resource resource = new StringResource("Hello {{ variable }}!");
+Template = (Environment, Resource)
 ```
-
-- **`FileResource`**, as the name can tell, uses a file as the reference to retrieve a Jtwig template.
-
-```java
-Resource resource = new FileResource(new File("<path to file>"));
-```
-
-- **`ClasspathResource`**, similar to a `FileResource` but useful when one want to render a template located in the application classpath. The classpath resource relies on the implementation of a `ClasspathResourceLoader`, which provides an interface for loading classpath resources and has a default implementation (`DefaultClasspathResourceLoader`).
-
-```java
-ClasspathResourceLoader classpathResourceLoader = new ...;
-Resource resource = new ClasspathResource("<path>", classpathResourceLoader);
-```
-
-## Environment
-
 
 <p style="text-align: justify;">
-Environment contains all the configured behaviour while rendering Jtwig Templates. One will describe all possibilities of configuring Jtwig Environment in the Configurations section in the next charpters.
+Where, basically, the <code>Template</code> is the combination of the <b>Environment</b> with the <b>Resource</b>. This has special meaning when extensions are added and means some intermediate representations don't mean anything without the proper extension added to the <b>Environment</b>. Note that, one will detail about Extensions later on.
 </p>
 
+```
+Output = (Template, Model)
+```
+
+### Hello World Example
+
+<p style="text-align: justify;">
+Let's now have a look at the famous Hello World program in Jtwig using the core API.
+</p>
+
+
 ```java
-EnvironmentConfiguration configuration = EnvironmentConfigurationBuilder
-                .configuration()
-                .build();
+// Environment
+EnvironmentConfiguration configuration = new DefaultEnvironmentConfiguration();
 EnvironmentFactory environmentFactory = new EnvironmentFactory();
 Environment environment = environmentFactory.create(configuration);
+
+// Resource
+Resource resource = new StringResource("Hello {{ token }}!");
+
+// Template
+JtwigTemplate jtwigTemplate = new JtwigTemplate(environment, resource);
+
+// Model
+JtwigModel model = new JtwigModel().with("token", "World");
+
+// Output
+String output = jtwigTemplate.render(model);
 ```
 
 <p style="text-align: justify;">
-One can see above how to create a an instance of environment using default configuration. It requires the <code>EnvironmentFactory</code> which then is given a <code>configuration</code>.
+As one can see, the way Jtwig core API is built follows the same concepts mentioned before, where the <b>Enviornment</b> and <b>Resource</b> are first instantiated in order to create the <code>JtwigTemplate</code>, which when combined with the <code>JtwigModel</code> generates the output.
 </p>
 
-## Rendering
+**Jtwig Model**
 
 <p style="text-align: justify;">
-In order to render a Jtwig Template, once an instance of it exists, one have two possibilities, either rendering it into a <code>String</code>, or to an <code>OutputStream</code>, both require a model to be given.
-</p>
-
-```java
-JtwigTemplate jtwigTemplate = ...;
-JtwigModel model = ...;
-String result = jtwigTemplate.render(model);
-```
-
-<p style="text-align: justify;">
-Note that, depending on the resource, the Jtwig Template, might be statefull therefore could not be used multiple times, for example, <code>StreamResource</code> is statefull, however, <code>StringResource</code>, <code>FileResource</code> and <code>ClasspathResource</code> are stateless.
-</p>
-
-
-```java
-JtwigTemplate jtwigTemplate = ...;
-JtwigModel model = ...;
-OutputStream outputStream = ...;
-jtwigTemplate.render(model, outputStream);
-```
-
-## Jtwig Model
-
-<p style="text-align: justify;">
-Jtwig Model can be seen as a map of properties, which will then be used to render the template.
+Jtwig Model can be seen as a map of properties, which will then be used to render the template. The keys can only be valid Java identifiers as mentioned before.
 </p>
 
 ```java
@@ -101,3 +66,16 @@ JtwigModel model = new JtwigModel()
      .with("secondVariable", 1);
 ```
 
+### Rendering Pipeline
+
+<p style="text-align: justify;">
+Jtwig rendering pipeline starts with parsing the resource into Jtwig AST (Abstract Syntax Tree).
+</p>
+
+<p style="text-align: center;">
+<img src="images/pipeline.png" />
+</p>
+
+<p style="text-align: justify;">
+This AST is then combined with the model to generate the final output. At this stage the content is escaped based on what was defined by the template (using <code>autoescape</code> tag, <code>espace</code> or <code>raw</code> functions).
+</p>
