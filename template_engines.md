@@ -18,7 +18,7 @@ Let's take a look to one of the simplest template engines - the Java native <cod
     String.format("Hello, I am %d years old", 30);
 
 <p style="text-align: justify;">
-Yes, String.format can be seen as a template engine, a really simple one. In the previous example, the content is the integer <code>30</code> which, when combined with the template Hello, <code>I am %d years old</code>, generates the output <code>Hello, I am 30 years old</code>.
+Yes, String.format can be seen as a template engine, a really simple one. In the previous example, the content is the integer <code>30</code> which, when combined with the template <code>Hello, I am %d years old</code>, generates the output <code>Hello, I am 30 years old</code>.
 </p>
 
 ## Why template engines? 
@@ -39,12 +39,12 @@ Another reason to adopt template engines is that, as tools written specifically 
 ## Why Jtwig?
 
 <p style="text-align: justify;">
-Jtwig appears from the desire of a better template engine in the Java world. After investigating all technologies available in the market, one decided to, instead of creating a brand new technology, port one good template engine to the Java world, mainly because one could only benefit from an already mature technology, heavily used and proven in the wild. Twig which is based on Django templates itself, was the choice. It was seen as the best alternative because of the following reasons:
+Jtwig appears from the desire of a better template engine in the Java world. After investigating all technologies available in the market, one decided to, instead of creating a brand new technology, port one good template engine to the Java world, mainly because one could only benefit from an already mature technology, heavily used and proven in the wild. Twig which is based on Django templates itself, was the choice. It was seen as the best alternative given the following arguments:
 </p>
 
-- Code island based, making it easier to read when mixed with presentation content;
-- Small learning curve, easy and common syntactic constructs, in fact, for Java developers, Jtwig has very similar building blocks;
-- Simple yet powerful template inheritance mechanism;
+- Code island based syntax, making it easier to read when mixed with presentation content;
+- Small learning curve, easy and common syntactic constructs, in fact, for Java developers, Jtwig represents a small deviation from Java syntax;
+- Simple yet powerful modularization mechanism;
 - Great expressive power with the capability to create logical complex templates;
 
 
