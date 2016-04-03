@@ -7,7 +7,7 @@ To better understand the foundations of template engines it is best to start by 
 ## What is a template engine?
 
 <p style="text-align: justify;">
-A template engine is a piece of software designed to combine a template with data model in order to produce a document. A template is an intermediate representation of the presentation. It specifies the rules that define on how the output will be generated.
+A template engine is a piece of software designed to combine a template with data in order to produce content. A template is an intermediate representation of the content. It specifies rules defining on how the output will be generated.
 </p>
 
 <p style="text-align: justify;">
@@ -18,21 +18,21 @@ Let's take a look to one of the simplest template engines - the Java native <cod
     String.format("Hello, I am %d years old", 30);
 
 <p style="text-align: justify;">
-Yes, String.format can be seen as a template engine, a really simple one. In the previous example, the content is the integer <code>30</code> which, when combined with the template <code>Hello, I am %d years old</code>, generates the output <code>Hello, I am 30 years old</code>.
+Yes, String.format can be seen as a template engine, a really simple one. In the previous example, the data is the integer <code>30</code> which, when combined with the template <code>Hello, I am %d years old</code>, generates the output <code>Hello, I am 30 years old</code>.
 </p>
 
 ## Why template engines? 
 
 <p style="text-align: justify;">
-In essence, a template engine allows one to split the content (data model), from its presentation, therefore allowing to develop the presentation and logic layer almost independently, where the only dependency is the data model. 
+Because they optimize the process of producing content by, mainly, avoiding repetition. In essence, a template engine allows one to reuse the same template with different data generating therefore different content. It splits the data from its presentation, allowing to develop the presentation and logic layer almost independently, where the only dependency is the data (also named data model). 
 </p>
 
 <p style="text-align: justify;">
-Splitting this layers simplifies maintenance by increasing the application modularity and changeability. For example, during the initial stages of a project, both layers might have similar change rates, however, when the project enters the maintenance mode, the presentation layer tends to be more subject to change. Without a template engine, it would be required logic layer changes in order to modify the presentation.
+Splitting this layers eases maintenance by increasing the application modularity and changeability. For example, during the initial stages of a project, both layers might have similar change rates, however, when the project enters the maintenance mode, the presentation layer tends to be more subject to change. Without a template engine, it would be required logic layer changes in order to affect the presentation.
 </p>
 
 <p style="text-align: justify;">
-Another reason to adopt template engines is that, as tools written specifically for presentation logic development, they simplify their development by providing several useful functionalities.
+Another reason to adopt template engines, as tools written specifically for presentation logic development, it is because they simplify the development by providing several useful functionalities.
 </p>
 
 
