@@ -56,7 +56,7 @@ In Jtwig there is only one way to write the value of an expression (the definiti
 ```
 
 <p style="text-align: justify;">
-Output constructs also support whitespace control feature in the same way as code islands.
+Output constructs also support white space control feature in the same way as code islands.
 </p>
 
 ```twig
