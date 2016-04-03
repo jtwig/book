@@ -1,7 +1,7 @@
 ## Expressions
 
 <p style="text-align: justify;">
-Expressions are the logic building blocks, they allow you to express a value. From the basic constants to binary and ternary operations, expressions give developers the power to specify logic.
+Expressions are the logic building blocks, they allow you to express a value. From the basic constants to binary and ternary operations, expressions give developers the power to specify a value.
 </p>
 
 ### Literals
