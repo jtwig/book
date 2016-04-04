@@ -19,6 +19,28 @@ The most basic expressions, check the table below.
 | String | `"[^"]*"` or `'[^']*'` |
 | Character | `'[a-zA-Z]'` |
 
+### Identifier
+
+<p style="text-align: justify;">
+An identifier is a name in Jtwig. It can contain alphanumeric characters and also underscores, but cannot start with digits. This is exactly the same regular expression as Java identifiers.
+</p>
+
+    [a-zA-Z_$][a-zA-Z0-9_$]*
+
+<p style="text-align: justify;">
+Of course such similarity happens on purpose, making it possible to specify any Java identifier in Jtwig templates. Such capability enables Jtwig to be fully compatible with Java identifiers, an important feature, specially, when it comes to the selection operator (as explained later on). This is one of the fundamental differences between Twig and Jtwig. Their regular expressions for identifiers are different and they match exactly the expression defined by their mother language. However different, they are quite similar. As per PHP official documentation PHP Manual, identifiers are defined according to the following regular expression:
+</p>
+
+    [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
+
+<p style="text-align: justify;">
+PHP definition is very similar to Java’s one, apart from the <code>$</code> character, however it also includes bytes from 127 to 225 (\x7f-\xff). Depending on the encoding, these extra bytes might be latin characters or even punctuation.
+</p>
+
+<p style="text-align: justify;">
+This allows one to create Jtwig and Twig compatible templates, nevertheless, it is important to be aware of such differences in order to accurately measure compatibility.
+</p>
+
 
 ### List
 
@@ -59,32 +81,11 @@ Whenever one need to access either a list element or map value, Jtwig, like Twig
     list[1]
     map[“hello”]
 
-### Identifier
-
-<p style="text-align: justify;">
-An identifier is a name in Jtwig. It can contain alphanumeric characters and also underscores, but cannot start with digits. This is exactly the same regular expression as Java identifiers.
-</p>
-
-    [a-zA-Z_$][a-zA-Z0-9_$]*
-
-<p style="text-align: justify;">
-Of course such similarity happens on purpose, making it possible to specify any Java identifier in Jtwig templates. Such capability enables Jtwig to be fully compatible with Java identifiers, an important feature, specially, when it comes to the selection operator (as explained afterwards). This is one of the fundamental differences between Twig and Jtwig. Their regular expressions for identifiers are different and they match exactly the expression defined by their mother language. However different, they are quite similar. As per PHP official documentation PHP Manual, identifiers are defined according to the following regular expression:
-</p>
-
-    [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
-
-<p style="text-align: justify;">
-PHP definition is very similar to Java’s one, apart from the <code>$</code> character, however it also includes bytes from 127 to 225 (\x7f-\xff). Depending on the encoding, these extra bytes might be latin characters or even punctuation.
-</p>
-
-<p style="text-align: justify;">
-This allows one to create Jtwig and Twig compatible templates, nevertheless, it is important to be aware of such differences in order to accurately measure compatibility.
-</p>
 
 ### Keywords
 
 <p style="text-align: justify;">
-Jtwig has some reserved identifiers, such identifiers are the building blocks of more complex Jtwig constructs. Below there is a list of the native reserved identifiers. 
+Jtwig has some reserved identifiers, such identifiers are the building blocks of more complex Jtwig constructs. Below there is the list of the native reserved identifiers. 
 </p>
 
 <p style="text-align: center;">
@@ -341,7 +342,7 @@ The first expression above specifies a selection operation to extract property <
 **Method with the same name**
 
 <p style="text-align: justify;">
-In this strategy the given object meta information is searched, using reflection, for methods with the exact same name (case sensitive comparison) as the property name provided. Using the previous examples, it would search for a method with name <code>p1</code> without arguments given the first expression, where for the second expression it will search for a method, again, with the same exact name and the same number of arguments. Note that, each specific argument resolution in Jtwig comes with the concept of converter, a mechanism detailed later on in this manual.
+In this strategy the given object meta information is searched, using reflection, for methods with the exact same name (case sensitive comparison) as the property name provided. Using the previous examples, it would search for a method with name <code>p1</code> without arguments given the first expression, where for the second expression it will search for a method, again, with the same exact name and the same number of arguments.
 </p>
 
 **Method prefixed with `get`, `is` or `has`**
