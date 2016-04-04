@@ -90,23 +90,20 @@ For loops come with an extra variable defined in the context, the <code>loop</co
 
 <p style="text-align: justify;">
 The previous example will output <code>Start</code> only once.
-This <code>loop</code> variable is only bound to the for context, it means that, this variable will not be visible outside of the for loop scope. It is also overriden locally, meaning that if this very same variable is present in the parent context it will be locally overridden only.
-</p>
-
-<p style="text-align: justify;">
-Another important aspect to mention is the context scope in for loops which differs from if conditions. Instead of sharing completelly the context with the parent construct, for loops will access share it partially.
+This <code>loop</code> variable is only bound to the for context, it means this variable will not be visible outside of the for loop scope. 
+If there is a <code>loop</code> variable in the context, it will not be overriden but to access it one need to get the parent context, for example:
 </p>
 
 ```twig
-{% set outerVariable = "a" %}
-{% for item in list %}
-  {% set innerVariable = "b" %}
-  {% set outerVariable = "c" %}
+{% set loop = 1 %}
+{% for item in [1, 2, 3] %}
+  {% if (loop.first) %}
+     {{ loop.parent.loop }}
+     {% set loop = 2 %}
+  {% endif %}
 {% endfor %}
-{{ outerVariable }}
-{{ innerVariable }}
+{{ loop }}
 ```
-
 <p style="text-align: justify;">
-Looking at the previous example, it will output <code>c</code> as the <code>outerVariable</code>, but the <code>innerVariable</code> will be undefined. For loops share already declared variables with the parent construct, however, newly declared variables will have it scope bounded by the for loop construct. 
+The previous template will print <code>1 2</code>. Note that setting <code>loop</code> inside the for loop will write to the context, but won't override the for loop bound variable.
 </p>
