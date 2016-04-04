@@ -3,7 +3,7 @@
 ### ``escape``
 
 <p style="text-align: justify;">
-The ``escape`` function allows one to escape a given value using diferent strategies.
+The <code>escape</code> function allows one to escape a given value using diferent strategies.
 </p>
 
 ```twig
