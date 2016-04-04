@@ -49,5 +49,5 @@ The <code>with</code> argument adds the capability to provide model variables to
 ## `only` (optional)
 
 <p style="text-align: justify;">
-The <code>only</code> argument tells the engine to exclude or not the parent context. When present this will intruct Jtwig engine to not share the parent context while rendering the included template.
+The <code>only</code> argument tells the engine to isolate the included template from the parent context. That way variables currently defined in the context won't be visible in the included template.
 </p>
