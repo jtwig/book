@@ -3,7 +3,7 @@
 
 
 <p style="text-align: justify;">
-As mentioned before, the Environment contains all the configured behaviour while rendering Jtwig Templates, it might include extensions as well. The simplies way to instantiate an <code>Environment</code> object is with the following code.
+As mentioned before, the Environment contains all the configured properties and behaviour while rendering Jtwig Templates, it might include extensions as well. The simpliest way to instantiate an <code>Environment</code> object is with the following code.
 </p>
 
 ```java
@@ -19,7 +19,7 @@ In order to create an <code>Environment</code> instance one need an <code>Enviro
 ## ``EnvironmentConfigurationBuilder`` API
 
 <p style="text-align: justify;">
-However, as shown in the previous example, the <code>DefaultEnvironmentConfiguration</code> creates an immutable <code>EnvironmentConfiguration</code> instance. For that purpose, one can use the <code>EnvironmentConfigurationBuilder</code> API. It comes with a set of methods to specify all possible Jtwig behaviour.
+However, as shown in the previous example, the <code>DefaultEnvironmentConfiguration</code> creates an immutable <code>EnvironmentConfiguration</code> instance. To overcome that limitation and customize Jtwig configuration the <code>EnvironmentConfigurationBuilder</code> API was created. It comes with a set of methods to specify all possible Jtwig behaviour.
 </p>
 
 ### Extending the default configuration
