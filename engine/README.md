@@ -65,17 +65,3 @@ JtwigModel model = new JtwigModel()
      .with("variable", "Jtwig")
      .with("secondVariable", 1);
 ```
-
-### Rendering Pipeline
-
-<p style="text-align: justify;">
-Jtwig rendering pipeline starts with parsing the resource into Jtwig AST (Abstract Syntax Tree).
-</p>
-
-<p style="text-align: center;">
-<img src="images/pipeline.png" />
-</p>
-
-<p style="text-align: justify;">
-This AST is then combined with the model to generate the final output. At this stage the content is escaped based on what was defined by the template (using <code>autoescape</code> tag, <code>espace</code> or <code>raw</code> functions).
-</p>
