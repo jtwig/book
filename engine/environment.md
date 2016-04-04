@@ -34,7 +34,7 @@ new EnvironmentConfigurationBuilder(new DefaultEnvironmentConfiguration())
 ```
 
 <p style="text-align: justify;">
-The example above will create an instance of EnvironmentConfiguration copying all the definitions from the default configuration. One can then use the builder to modify the default configuration. Another way to achieve the same is by using the static method ``EnvironmentConfigurationBuilder::configuration``, which makes the previous code snippet equivalent to the following one.
+The example above will create an instance of EnvironmentConfiguration copying all the definitions from the default configuration. One can then use the builder to modify the default configuration. Another way to achieve the same is by using the static method <code>EnvironmentConfigurationBuilder::configuration</code>, which makes the previous code snippet equivalent to the following one.
 </p>
 
 ```java
@@ -66,7 +66,7 @@ new EnvironmentConfigurationBuilder().parser()
 With this one can specify:
 </p>
 
-* ``StartCode``, ``EndCode``, ``StartOutput``, ``EndOutput``, ``StartComment`` and ``EndComment`` allows one customize the sintactic sumbols used by Jtwig code islands.
+* ``StartCode``, ``EndCode``, ``StartOutput``, ``EndOutput``, ``StartComment`` and ``EndComment`` allows one customize the syntactic symbols used by Jtwig code islands.
 * ``AddonParserProvider``, ``BinaryOperator`` and ``UnaryOperator`` is the way to enhance the parser with extra addons, this will be detailed further on. All the mentioned methods are used to build lists of objects which means one can specify as many as we want.
 * ``CacheProvider`` setting gives the user the possibility of configuring a cache system for compiled Jtwig templates speeding up the rendering. Such cache uses a **Resource** as key and provides the Jtwig compiled templates as value. By caching it, operations like reading files and flatening the template structure can get a significant performance boost. Jtwig core comes with three implementations:
     
