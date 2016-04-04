@@ -1,7 +1,7 @@
 # Command constructs
 
 <p style="text-align: justify;">
-Command constructs allows one to run specific commands against Jtwig. An important aspect common to all commands is that they never produce content, they only act as a side effect tool.
+Command constructs allows one to run specific commands against Jtwig. An important aspect common to all commands is that they never produce content, they only produce side effects.
 </p>
 
 ## `set` command
@@ -35,30 +35,10 @@ There is not a lot to say about this construct, it might be usefull to trigger b
 ## `flush` command
 
 <p style="text-align: justify;">
-A common operation over streams is the <code>flush</code> operation. As a template engine Jtwig is very much associated with output buffers, which can be explicitly flushed. This forces the buffer to be written, for example, in a web application it will force the data to be sent from the ouput buffer to the destination over the wire.
+A common operation over streams is the <code>flush</code> operation. As a template engine Jtwig is very much associated with output buffers, which can be explicitly flushed. This forces the buffer to be flushed, for example, in a web application it will force the data to be sent over the wire.
 </p>
 
 ```twig
 {% flush %}
 ```
 
-
-## `autoescape` construct
-
-<p style="text-align: justify;">
-The <code>autoescape</code> construct allows one to set the escape mode to the given content. The escaping modes currently available are:
-</p>
-
-* `false` - No escaping at all
-* `'js'` or `'javascript'` - Javascript escaping mode
-* `html` - Escaping special HTML characters
-
-```twig
-{% autoescape 'html' %}
-<a href="#">Link</a>
-{% endautoescape %}
-```
-
-<p style="text-align: justify;">
-The escaping functionality is attached to the very end of the rendering pipeline as explained in Jtwig Core > Rendering pipeline.
-</p>
