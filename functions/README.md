@@ -11,7 +11,7 @@ escape(<Value> [, <Escape Mode>])
 ```
 
 <p style="text-align: justify;">
-By default it uses HTML escape mode, meaning HTML special characters will be then escaped. Escape modes were already described in  tag.
+By default it uses HTML escape mode, meaning HTML special characters will be then escaped. Escape modes were already described in Tags > Other Tags > <code>autoescape</code> tag.
 </p>
 
 ### ``raw``
