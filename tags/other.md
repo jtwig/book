@@ -4,7 +4,7 @@
 ## `autoescape`
 
 <p style="text-align: justify;">
-The <code>autoescape</code> construct allows one to set the escape mode to the given content. The escaping modes currently available are:
+The <code>autoescape</code> construct only change the escape mode which will be used by the processing pipeline to generate the output. The escaping modes currently available are:
 </p>
 
 * `false` - No escaping at all

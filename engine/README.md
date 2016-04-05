@@ -65,3 +65,29 @@ JtwigModel model = new JtwigModel()
      .with("variable", "Jtwig")
      .with("secondVariable", 1);
 ```
+
+### Processing Pipeline
+
+**Parsing Stage**
+
+<p style="text-align: justify;">
+The way Jtwig produces the final result is through a well defined processing pipeline. At start of this whole processing is the parsing stage. The parsing stage is where Jtwig parses a file producing a tree of nodes based of the Jtwig Abstract Syntax Tree. This tree is composed of content nodes and expressions. As mentioned before expressions are evaluated to values, and where content nodes are evaluated to streamable content. By content nodes we mean all the Jtwig tags and raw text defined in the template.
+</p>
+
+**Lazy loading nested resources**
+
+<p style="text-align: justify;">
+In Jtwig nested resources, which can be referred using <code>include</code>, <code>extends</code>, <code>embed</code> and <code>import</code> constructs, are loaded in rendering time (lazy loaded) as the path expression needs to be evaluated first.
+</p>
+
+**Caching resources**
+
+<p style="text-align: justify;">
+Another concept included in the parsing stage is the resource caching mechanism. By default Jtwig will cache the parsed resources in memory in a persistent fashion, that means, for the lifetime of the JVM, resources are only parsed once. 
+</p>
+
+**Rendering Stage**
+
+<p style="text-align: justify;">
+The next stage is the rendering stage. Each content node in the parsed tree is processed into streamable content. Before each content node being rendered the associated escape mode is initialised. This will then be used to serialize the output. The Jtwig serializer is capable of escaping content based on a specified strategy. Supported escape modes were already specified in the <code>autoescape</code> tag definition.
+</p>
