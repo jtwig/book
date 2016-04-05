@@ -17,5 +17,5 @@ By default it uses HTML escape mode, meaning HTML special characters will be the
 ### ``raw``
 
 <p style="text-align: justify;">
-This function clears the current escape mode set for a given context.
+This function clears the current escape mode set for a given context. Test
 </p>
