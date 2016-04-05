@@ -38,4 +38,26 @@ This function clears the current escape mode of the context. It is equivalent to
 
 <p style="text-align: justify;">
 The previous example will produce <code>&</code> as output.
+</p> 
+
+### ``constant``
+
+<p style="text-align: justify;">
+The constant function comes with two possible outputs depending on the number of arguments supplied. If one argument is supplied, it will return the value of the constant. If two arguments are provided, then it will compare the constant value against the second argument.
+</p>
+
+```twig
+{{.constant("org.jtwig.example.TestClass.CONSTANT_NAME") }}
+```
+
+<p style="text-align: justify;">
+As shown in the above example, the expression will print the result of evaluating (using reflection) the constant with name <code>CONSTANT_NAME</code> defined in class <code>org.jtwig.example.TestClass</code>. Note that the evaluation will only work if the constant is public.
+</p>
+
+```twig
+{{.constant("org.jtwig.example.TestClass.CONSTANT_NAME", "value") }}
+```
+
+<p style="text-align: justify;">
+The above example will return a Boolean expression. It will be <code>true</code> if the constant value is equal to <code>"value"</code>.
 </p>
