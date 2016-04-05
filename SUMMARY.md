@@ -16,7 +16,6 @@
   * [Macros](tags/macros/README.md)
     * [macro](tags/macros/macro.md)
     * [import](tags/macros/import.md)
-  * [filter](tags/filter.md)
   * [Others Tags](tags/other.md)
 * [Functions](functions/README.md)
 * [Jtwig Core](engine/README.md)
