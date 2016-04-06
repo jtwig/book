@@ -19,8 +19,13 @@ In order to create an <code>Environment</code> instance one need an <code>Enviro
 ## ``EnvironmentConfigurationBuilder`` API
 
 <p style="text-align: justify;">
-However, as shown in the previous example, the <code>DefaultEnvironmentConfiguration</code> creates an immutable <code>EnvironmentConfiguration</code> instance. To overcome that limitation and customize Jtwig configuration the <code>EnvironmentConfigurationBuilder</code> API was created. It comes with a set of methods to specify all possible Jtwig behaviour.
+However, as shown in the previous example, the <code>DefaultEnvironmentConfiguration</code> creates an immutable <code>EnvironmentConfiguration</code> instance. To overcome that limitation and customize Jtwig configuration the <code>EnvironmentConfigurationBuilder</code> API was created. It comes with a set of methods to specify all possible Jtwig behaviour. As Jtwig is highly configurable, this API offers a tree of builders to organise and ease the specification of customised behaviour. Note that all the builders follow a common convention:
 </p>
+
+* All the builder methods starting with ``with``  will set the underlying configuration field.
+* All methods starting with ``without`` will unset the underlying configuration field.
+* All methods starting with ``andWith`` will append elements to a list of values. For example, Jtwig allows the user to specify multiple extensions, in this case, ``andWith`` can be used to add another extension on top of others already added, whether ``with`` will override the existing list (Note that this methods only exist when the underlying configuration field is a list of items)
+* All methods starting with ``filter`` allows the user to specify a filtering condition which will be used against the list of already existing items, this methods are useful to modify pre-defined behaviour (Note that this methods only exist when the underlying configuration field is a list of items).
 
 ### Extending the default configuration
 
@@ -57,7 +62,8 @@ new EnvironmentConfigurationBuilder().parser()
                 .withAddonParserProvider(customAddonParser())
                 .withBinaryOperator(customBinaryOperator())
                 .withUnaryOperator(customUnaryOperator())
-                .withCacheProvider(new NoTemplateCacheProvider())
+                .withTemplateCache(customTemplateCache())
+                //.withoutTemplateCache()
                 .and()
                 .build();
 ```
@@ -68,11 +74,7 @@ With this one can specify:
 
 * ``StartCode``, ``EndCode``, ``StartOutput``, ``EndOutput``, ``StartComment`` and ``EndComment`` allows one customize the syntactic symbols used by Jtwig code islands.
 * ``AddonParserProvider``, ``BinaryOperator`` and ``UnaryOperator`` is the way to enhance the parser with extra addons, this will be detailed further on. All the mentioned methods are used to build lists of objects which means one can specify as many as we want.
-* ``CacheProvider`` setting gives the user the possibility of configuring a cache system for compiled Jtwig templates speeding up the rendering. Such cache uses a **Resource** as key and provides the Jtwig compiled templates as value. By caching it, operations like reading files and flatening the template structure can get a significant performance boost. Jtwig core comes with three implementations:
-    
-1. ``NoTemplateCacheProvider`` where no cache is provided, this is the default behaviour.
-2. ``PersistentTemplateCacheProvider`` provides a persistent cache mechanism, it's very execution time performant, however not memory efficient.
-3. ``LimitedTemplateCacheProvider`` provides a simple [guava](https://github.com/google/guava/wiki/CachesExplained) cache implementation with the specified size.
+* ``TemplateCache`` setting gives the user the possibility to configure a cache for compiled Jtwig templates. Such mechanism speeds up the parsing operation. It uses **Resource** as key and returns, as mentioned, the Jtwig compiled templates. By caching it, operations like reading files and flatening the template structure can get a significant performance boost. Jtwig core comes with one implementation used by default: ``InMemoryConcurrentPersistentTemplateCache`` which was built with high performance standards.
 
 ### ``functions()``
 
@@ -95,13 +97,14 @@ The <code>resources()</code> method returns an instance of <code>AndResourceReso
 
 ```java
 new EnvironmentConfigurationBuilder().resources()
-                .withFunction(customFunction())
+				.withDefaultInputCharset(defaultCharset)
+				.withResourceResolver(resourceResolver)
                 .and()
                 .build();
 ```
 
 <p style="text-align: justify;">
-It's possible to specify multiple resources resolvers. Resource resolvers are detailed further on.
+It's possible to specify multiple resources resolvers. Resource resolvers are detailed further on. A default input charset can also be provided, it will be used as the default input encoding for loaded resources. To understand what encoding gets used, the specific implementation of resource resolver must be analysed.
 </p>
 
 ### ``render()``
@@ -116,6 +119,11 @@ new EnvironmentConfigurationBuilder()
                     .withStrictMode(strictMode)
                     .withInitialEscapeMode(initialEscapeMode)
                     .withOutputCharset(outputCharset)
+                    .withRenders(customContentNodeRenderers)
+            	    .withCalculators(customExpressionCalculators)
+        	        .withBinaryCalculators(customBinaryOperatorCalculators)
+    	            .withUnaryCalculators(customUnaryOperatorCalculators)
+	                .withTestExpressionCalculators(customTestExpressionCalculators)
                 .and().build();
 ```
 
@@ -125,12 +133,15 @@ Here you can find the following properties:
 
 * ``StrictMode`` sets the way to resolve variables in Jtwig, if strict mode is active, undefined variables will throw an exception when evaluated. However, if strict mode is disabled, it will be evaluated to ``Undefined.UNDEFINED``. Strict mode is disabled by default.
 * ``InitialEscapeMode`` as the name says sets the initial escape mode, which by default is set to ``NONE``, which means, strings wont be escaped when rendering the template. Escape modes were already mentioned before (Tags > Commands).
-* ``OutputChatset`` defines the default output charset for Jtwig.
+* ``OutputChatset`` defines the default output charset for Jtwig, this is used at the Jtwig rendering stage.
+* ``Renders`` is a map of Content Node type to an implementation of the RenderNode interface. Such interface tell Jtwig how to render such type of element once they appear on the Jtwig rendering tree.
+* ``Calculators`` holds the mapping from Expression to it's calculator, allowing Jtwig to evaluate the given expression value.
+* ``BinaryCalculators``, ``UnaryCalculators`` and ``TestExpressionCalculators`` again, allows the user to specify implementations of calculators so that Jtwig can use to evaluate such expressions value.
 
 ### ``propertyResolver()``
 
 <p style="text-align: justify;">
-This method allows one to setup multiple property resolvers. It returns an instance of <code>AndPropertyResolverConfigurationBuilder</code>.
+This method allows one to setup multiple property resolvers. It returns an instance of <code>AndPropertyResolverConfigurationBuilder</code>. The default property resolution mechanism was already detailed when describing the selection operator behaviour.
 </p>
 
 ```java
@@ -164,13 +175,13 @@ new EnvironmentConfigurationBuilder()
 new EnvironmentConfigurationBuilder()
                 .value()
                     .withMathContext(MathContext.DECIMAL128)
-                    .withConverters(converters)
-                    .withEqualComparator(equalComparator)
-                    .withLowerComparator(lowerComparator)
-                    .withGreaterComparator(greaterComparator)
-                    .withIdenticalComparator(identicalComparator)
-                    .withMapSelectionExtractor(mapSelectionExtractor)
-                    .withTypeExtractor(typeExtractor)
+                    .withRoundingMode(RoundingMode.HALF_UP)
+                    .withValueComparator(valueComparator)
+                    .withStringConverter(stringConverter)
+                    .withNumberConverter(numberConverter)
+					.withBooleanConverter(booleanConverter)
+					.withCharConverter(charConverter)
+					.withCollectionConverter(collectionConverter)
                 .and().build();
 ```
 
@@ -179,10 +190,10 @@ The <code>value()</code> method returns an instance of <code>AndValueConfigurati
 </p>
 
 * ``MathContext`` sets the java BigDecimal Math Context, note that Jtwig converts all numbers to BigDecimal.
-* ``Converters`` allows one to convert values between different types. This might be used for operations, functions and tags (loops, for example).
-* ``EqualComparator`` (``==``), ``LowerComparator`` (``<``), ``GreaterComparator`` (``>``), ``IdenticalComparator`` (``===``) are used when comparing two values.
-* ``MapSelectionExtractor`` extracts a value given a key, is used in expressions lile ``variable['key']``.
-* ``TypeExtractor`` allows one to retrieve the type from a given value.
+* ``RoundingMode`` is used by mathematical operations like divide and multiply as rounding might be applied.
+* ``ValueComparator`` is used for all comparisons in Jtwig. By default, the value comparator tries to convert the operands to a number (then comparing using the BigDecimal equals method) or it converts the operands to a string (using the String equals method).
+* ``StringConverter`` allows to specify the logic to use always returns a String value.
+* ``NumberConverter``, ``BooleanConverter``, ``CharConverter`` and ``CollectionConverter`` allows Jtwig to extract such types of values from a generic Java object. Note that, in regards to ``StringConverter`` the behaviour, is slightly different when compared with the other comparators mentioned, 
 
 
 ### ``withExtension(Extension)``
