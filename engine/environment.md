@@ -3,6 +3,10 @@
 
 
 <p style="text-align: justify;">
+In this section one will define the <code>Environment</code> concept, how it can be configured, also describing the default configuration.
+</p>
+
+<p style="text-align: justify;">
 As mentioned before, the Environment contains all the configured properties and behaviour while rendering Jtwig Templates, it might include extensions as well. The simpliest way to instantiate an <code>Environment</code> object is with the following code.
 </p>
 
@@ -41,7 +45,7 @@ new EnvironmentConfigurationBuilder(new DefaultEnvironmentConfiguration())
 ```
 
 <p style="text-align: justify;">
-The example above will create an instance of EnvironmentConfiguration copying all the definitions from the default configuration. One can then use the builder to modify the default configuration. Another way to achieve the same is by using the static method <code>EnvironmentConfigurationBuilder::configuration</code>, which makes the previous code snippet equivalent to the following one.
+The example above will create an instance of EnvironmentConfiguration copying all the definitions from the default configuration. One can then use the builder to modify the default configuration. Another way to achieve the same is by using the static method <code>configuration</code> of <code>EnvironmentConfigurationBuilder</code>, which makes the previous code snippet equivalent to the following one.
 </p>
 
 ```java
@@ -59,7 +63,7 @@ EnvironmentConfiguration configuration = EnvironmentConfigurationBuilder
                 .configuration()
                     .parser()
                         .syntax()
-                            .withStartCode("{%").withEndCode("%}")
+                            .withStartCode("{ %").withEndCode("%}")
                             .withStartOutput("{{").withEndOutput("}}")
                             .withStartComment("{#").withEndComment("#}")
                         .and()
@@ -75,8 +79,8 @@ EnvironmentConfiguration configuration = EnvironmentConfigurationBuilder
 With this one can specify:
 </p>
 
-* ``StartCode``, ``EndCode``, ``StartOutput``, ``EndOutput``, ``StartComment`` and ``EndComment`` allows one customize the syntactic symbols used by Jtwig code islands.
-* ``AddonParserProviders``, ``BinaryOperators`` and ``UnaryOperators`` provides API to enhance the parser with extra addons, this will be detailed further on. All the mentioned methods are used to build lists of objects which means one can specify as many as we want.
+* ``StartCode``, ``EndCode``, ``StartOutput``, ``EndOutput``, ``StartComment`` and ``EndComment`` allows one customize the syntactic symbols used by Jtwig code islands. By default, Jtwig sets ``"{ %"``, ``"%}"``, ``"{{"``, ``"}}"``, ``"{#"`` and ``"#}"`` respectively.
+* ``AddonParserProviders``, ``BinaryOperators`` and ``UnaryOperators`` provides API to enhance the parser with extra addons, this will be detailed further on. All the mentioned methods are used to build lists of objects which means one can specify as many as we want. Jtwig by default doesn't include addons, however, in terms of ``BinaryOperators`` and ``UnaryOperators`` you can get the ones already specified as part of the Jtwig expression syntax definition.
 * ``TemplateCache`` setting gives the user the possibility to configure a cache for compiled Jtwig templates. Such mechanism speeds up the parsing operation. It uses **Resource** as key and returns, as mentioned, the Jtwig compiled templates. By caching it, operations like reading files and flatening the template structure can get a significant performance boost. Jtwig core comes with one implementation used by default: ``InMemoryConcurrentPersistentTemplateCache`` which was built with high performance standards.
 
 ### ``functions()``
@@ -93,6 +97,10 @@ EnvironmentConfiguration configuration = EnvironmentConfigurationBuilder
                     .and()
                 .build();
 ```
+
+<p style="text-align: justify;">
+The list of functions available by default in Jtwig was already described in a previous chapter.
+</p>
 
 ### ``resources()``
 
@@ -145,10 +153,14 @@ Here you can find the following properties:
 
 * ``StrictMode`` sets the way to resolve variables in Jtwig, if strict mode is active, undefined variables will throw an exception when evaluated. However, if strict mode is disabled, it will be evaluated to ``Undefined.UNDEFINED``. Strict mode is disabled by default.
 * ``InitialEscapeMode`` as the name says sets the initial escape mode, which by default is set to ``NONE``, which means, strings wont be escaped when rendering the template. Escape modes were already mentioned before (Tags > Commands).
-* ``OutputChatset`` defines the default output charset for Jtwig, this is used at the Jtwig rendering stage.
+* ``OutputChatset`` defines the default output charset for Jtwig, this is used at the Jtwig rendering stage. By default it uses ``Charset.defaultCharset()``, check Java documentation for more information.
 * ``NodeRenders`` is a map of Content Node type to an implementation of the RenderNode interface. Such interface tell Jtwig how to render such type of element once they appear on the Jtwig rendering tree.
 * ``ExpressionCalculators`` holds the mapping from Expression to it's calculator, allowing Jtwig to evaluate the given expression value.
 * ``BinaryExpressionCalculators``, ``UnaryExpressionCalculators`` and ``TestExpressionCalculators`` again, allows the user to specify implementations of calculators so that Jtwig can use to evaluate such expressions value.
+
+<p style="text-align: justify;">
+ The ``NodeRenders``, ``ExpressionCalculators``, ``BinaryExpressionCalculators``, ``UnaryExpressionCalculators`` and ``TestExpressionCalculators`` defined by default were already described in the Jtwig syntax definition.
+</p>
 
 ### ``propertyResolvers()``
 
@@ -207,11 +219,47 @@ EnvironmentConfiguration configuration = EnvironmentConfigurationBuilder
 The <code>value()</code> method returns an instance of <code>AndValueConfigurationBuilder</code> allowing to configure Jtwig value handling.
 </p>
 
-* ``MathContext`` sets the java BigDecimal Math Context, note that Jtwig converts all numbers to BigDecimal.
-* ``RoundingMode`` is used by mathematical operations like divide and multiply as rounding might be applied.
+* ``MathContext`` sets the java BigDecimal Math Context, note that Jtwig math operations are performed using Java's BigDecimal API, for that, whenever needed, the context specified in here will be used. By default Jtwig sets ``MathContext.DECIMAL32``. For more information, check Java documentation.
+* ``RoundingMode`` is used by mathematical operations like divide and multiply as rounding might be applied. By default Jtwig specifies ``RoundingMode.HALF_UP``, check Java documentation of ``RoundingMode`` for more information.
 * ``ValueComparator`` is used for all comparisons in Jtwig. By default, the value comparator tries to convert the operands to a number (then comparing using the BigDecimal equals method) or it converts the operands to a string (using the String equals method).
 * ``StringConverter`` allows to specify the logic to use when converting objects to a String value, note this is used to serialize any object in Jtwig, the default implementation is null safe (returning empty string if null) and only returns the result of the Java native Object ``toString`` method.
-* ``NumberConverter``, ``BooleanConverter``, ``CharConverter`` and ``CollectionConverter`` allows Jtwig to extract such types of values from a generic Java object.
+* ``NumberConverters`` configuration field which is a list of converters from any possible object to Number. Jtwig environment will then chain this list of converters together in a composite converter. Such composite converter will call the specified converters where the first returning a value will be used. The default implementation can be defined by the following table:
+
+| Java Object | Result                       |
+|-------------|------------------------------|
+| null        | 0                            |
+| Undefined   | 0                            |
+| Boolean     | 1 if true, 0 if false        |
+| String      | Will try to parse the string |
+
+* ``CollectionConverters`` provides a similar api as ``NumberConverters``, users can appen as many collection converters as they want, Jtwig will chain them applying the same logic used for composing multiple ``NumberConverters``. The default configuration for this will cover the following scenarios:
+
+| Java Object | Result                                                    |
+|-------------|-----------------------------------------------------------|
+| null        | null                                                      |
+| Array       | keys as the index and values as the items in the array    |
+| Iterable    | keys as the index and values as the items in the iterable |
+| Map         | all key and values in the map                             |
+
+* ``CharConverters`` is another set of converters allowing Jtwig to convert a given generic Java object to a ``Character``. The default behaviour you can expect will be the following:
+
+| Java Object | Result                                                    |
+|-------------|-----------------------------------------------------------|
+| null        | null                                                      |
+| Object      | Object.toString only char, if there is one                |
+
+* ``BooleanConverters`` similar to the previous converters mentioned here, the following behaviour can be expected as default:
+
+| Java Object | Result                                                    |
+|-------------|-----------------------------------------------------------|
+| null        | false                                                     |
+| Undefined   | false                                                     |
+| String      | ``"true"`` and ``"false"`` get converted to true and false|
+| Array       | false if empty, true otherwise                            |
+| Iterable    | false if empty, true otherwise                            |
+| Map         | false if empty, true otherwise                            |
+| Number      | false if 0, true otherwise                                |
+
 
 ### ``extensions()``
 

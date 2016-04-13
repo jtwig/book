@@ -21,5 +21,4 @@
 * [Jtwig Core](engine/README.md)
   * [Environment](engine/environment.md)
   * [Resource](engine/resources.md)
-* [Resources](resources/README.md)
 * [Glossary](GLOSSARY.md)

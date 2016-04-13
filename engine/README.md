@@ -44,7 +44,7 @@ Resource resource = new StringResource("Hello {{ token }}!");
 JtwigTemplate jtwigTemplate = new JtwigTemplate(environment, resource);
 
 // Model
-JtwigModel model = new JtwigModel().with("token", "World");
+JtwigModel model = JtwigModel.newModel().with("token", "World");
 
 // Output
 String output = jtwigTemplate.render(model);
@@ -61,7 +61,7 @@ Jtwig Model can be seen as a map of properties, which will then be used to rende
 </p>
 
 ```java
-JtwigModel model = new JtwigModel()
+JtwigModel model = JtwigModel.newModel()
      .with("variable", "Jtwig")
      .with("secondVariable", 1);
 ```
@@ -90,4 +90,10 @@ Another concept included in the parsing stage is the resource caching mechanism.
 
 <p style="text-align: justify;">
 The next stage is the rendering stage. Each content node in the parsed tree is processed into streamable content. Before each content node being rendered the associated escape mode is initialised. This will then be used to serialize the output. The Jtwig serializer is capable of escaping content based on a specified strategy. Supported escape modes were already specified in the <code>autoescape</code> tag definition.
+</p>
+
+**Expression Evaluation**
+
+<p style="text-align: justify;">
+During the rendering stage, expressions are evaluated, for example, to perform the Jtwig control flow. An important aspect of this evaluation mechanism is a special type introduced by Jtwig, that is, the <code>Undefined</code> value. It's a singleton used to specify when the result of evaluating an expression is undefined. For example, accessing an undefined array index or evaluating an undefined variable.
 </p>
