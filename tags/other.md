@@ -4,12 +4,8 @@
 ## `autoescape`
 
 <p style="text-align: justify;">
-The <code>autoescape</code> construct only change the escape mode which will be used by the processing pipeline to generate the output. The escaping modes currently available are:
+The <code>autoescape</code> construct only change the escape mode which will be used by the processing pipeline to generate the output. Escape modes are configurable in Jtwig, check Jtwig Core > Environment documentation for more information.
 </p>
-
-* `false` - No escaping at all
-* `'js'` or `'javascript'` - Javascript escaping mode
-* `html` - Escaping special HTML characters
 
 ```twig
 {% autoescape 'html' %}
@@ -18,7 +14,7 @@ The <code>autoescape</code> construct only change the escape mode which will be 
 ```
 
 <p style="text-align: justify;">
-The escaping functionality is attached to the very end of the rendering pipeline as explained in Jtwig Core > Rendering pipeline.
+The escaping functionality is attached to the very end of the Jtwig rendering pipeline.
 </p>
 
 ## `filter`

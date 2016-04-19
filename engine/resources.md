@@ -47,7 +47,7 @@ Note that it can only return a resource if it exists, otherwise it should return
 
 **How it works?**
 <p style="text-align: justify;">
-While configuring Jtwig, has already shown in the Environment configuration, it's possible to specify multiple Resource resolvers. Such list is then iterated in the same order they were added, where the first resolver returning a non-empty result will be the one used.
+While configuring Jtwig, has already shown in the Environment configuration, it's possible to specify multiple resource resolvers. Such list is then iterated in the same order they were added to the configuration, where the first resolver returning a non-empty result will be the one used.
 </p>
 
 **Default resolvers**

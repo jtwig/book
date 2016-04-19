@@ -21,4 +21,8 @@
 * [Jtwig Core](engine/README.md)
   * [Environment](engine/environment.md)
   * [Resource](engine/resources.md)
+  * [Integration](engine/integration.md)
+* [Jtwig Web](web/README.md)
+  * [Jtwig Spring](web/spring.md)
+  * [Jtwig Spring Boot](web/spring-boot.md)
 * [Glossary](GLOSSARY.md)

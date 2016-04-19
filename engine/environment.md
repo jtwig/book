@@ -152,7 +152,6 @@ Here you can find the following properties:
 </p>
 
 * ``StrictMode`` sets the way to resolve variables in Jtwig, if strict mode is active, undefined variables will throw an exception when evaluated. However, if strict mode is disabled, it will be evaluated to ``Undefined.UNDEFINED``. Strict mode is disabled by default.
-* ``InitialEscapeMode`` as the name says sets the initial escape mode, which by default is set to ``NONE``, which means, strings wont be escaped when rendering the template. Escape modes were already mentioned before (Tags > Commands).
 * ``OutputChatset`` defines the default output charset for Jtwig, this is used at the Jtwig rendering stage. By default it uses ``Charset.defaultCharset()``, check Java documentation for more information.
 * ``NodeRenders`` is a map of Content Node type to an implementation of the RenderNode interface. Such interface tell Jtwig how to render such type of element once they appear on the Jtwig rendering tree.
 * ``ExpressionCalculators`` holds the mapping from Expression to it's calculator, allowing Jtwig to evaluate the given expression value.
@@ -161,6 +160,30 @@ Here you can find the following properties:
 <p style="text-align: justify;">
  The ``NodeRenders``, ``ExpressionCalculators``, ``BinaryExpressionCalculators``, ``UnaryExpressionCalculators`` and ``TestExpressionCalculators`` defined by default were already described in the Jtwig syntax definition.
 </p>
+
+### ``escape()``
+
+<p style="text-align: justify;">
+The escape configuration allows one to configure Jtwig special characters escaping capability.
+</p>
+
+```java
+EnvironmentConfiguration configuration = EnvironmentConfigurationBuilder
+                .configuration()
+                    .escape()
+                        .withInitialEngine("none")
+                        .withDefaultEngine("custom")
+                        .engines()
+                            .add("custom", customEscapeEngine)
+                        .and()
+                    .and()
+                .build();
+```
+
+* ``Engines`` is a map of String to escape engine, which will be used to resolve escape mode identifiers to escape engines. By default, the following are provided. ``false`` or ``'none'``, which will perform no escaping at all. ``'js'`` or ``'javascript'``, for Javascript special characters escaping strategy and, finally, ``'html'`` to escape HTML special characters.
+* ``InitialEngine`` sets the initial escape mode, which by default is set to ``'none'``, which means, strings wont be escaped when rendering the template.
+* ``DefaultEngine`` property sets the default escape mode, which by default is set to ``HTML``, which means, when not specified by ``autoescape`` tag or ``escape`` function ``HTML`` escaping engine will be used.
+
 
 ### ``propertyResolvers()``
 

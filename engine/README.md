@@ -54,7 +54,28 @@ String output = jtwigTemplate.render(model);
 As one can see, the way Jtwig core API is built follows the same concepts mentioned before, where the <b>Enviornment</b> and <b>Resource</b> are first instantiated in order to create the <code>JtwigTemplate</code>, which when combined with the <code>JtwigModel</code> generates the output.
 </p>
 
-**Jtwig Model**
+**``JtwigTemplate`` API**
+
+<p style="text-align: justify;">
+The <code>JtwigTemplate</code> implementation comes with API to simplify some application code. Namely the static methods <code>inlineTemplate</code>, <code>fileTemplate</code> and <code>classpathTemplate</code> allows one to, respectively, load a Jtwig template directly from a String, file or classpath. Using the previous example, one can simplify the code using the <code>inlineTemplate</code> method, as the below example shows.
+</p>
+
+```java
+// Environment
+EnvironmentConfiguration configuration = new DefaultEnvironmentConfiguration();
+
+// Template
+JtwigTemplate jtwigTemplate = JtwigTemplate
+    .inlineTemplate("Hello {{ token }}!", configuration);
+
+// Model
+JtwigModel model = JtwigModel.newModel().with("token", "World");
+
+// Output
+String output = jtwigTemplate.render(model);
+```
+
+**``JtwigModel`` API**
 
 <p style="text-align: justify;">
 Jtwig Model can be seen as a map of properties, which will then be used to render the template. The keys can only be valid Java identifiers as mentioned before.
