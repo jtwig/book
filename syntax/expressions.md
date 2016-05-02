@@ -198,6 +198,15 @@ Jtwig comes with several built in binary operators. Below, one will describe the
             </td>
         </tr>
         <tr>
+            <td>Concat</td>
+            <td style="text-align: center;"><code>~</code>
+            </td>
+            <td style="text-align: center;">10</td>
+            <td>Concatenates two strings.</td>
+            <td><code>"5" ~ "2"</code> outputs <code>"52"</code>
+            </td>
+        </tr>
+        <tr>
             <td>Less</td>
             <td style="text-align: center;"><code>&lt;</code>
             </td>

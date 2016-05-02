@@ -1,13 +1,38 @@
 # Translate Extension
 
 <p style="text-align: justify;">
-The translate extension adds internationalization capabilities to Jtwig. It comes with two engines, the pluralization engine and the translation mechanism. Each of them with it's own tag and function.
+The translate extension adds internationalization capabilities to Jtwig. It comes with two engines, the pluralization engine and the translation mechanism. Each of them with it's own tags and functions.
 </p>
 
 ### Translation
 
 <p style="text-align: justify;">
-The translation engine in Jtwig relies in two key pieces of information, the text to be translated and the desired language or, more specificaly, the locale.
+The translation engine in Jtwig relies in two distinct concepts:
+</p>
+
+* Message Source
+* Message Decoration
+
+<p style="text-align: justify;">
+Message source mechanism acts as a storage of translations, it allows one to get the translation of a given text to a specific language, or more specifically, to a Locale (check the official Java documentation <code>java.util.Locale</code>). In Jtwig, if such message source engine is unable to find a requested translation, then it returns the given text. Note that, usually in Java, such given text is a non-human readable key used as reference to a sentence defined somewhere. Such is still possible with Jtwig, however, Jtwig empowers developers to use readable text directly as key, which can simplify  maintenance.
+</p>
+
+<p style="text-align: justify;">
+Message decoration is the engine which allows one to replace occurrencies of a given string in a text by another value.
+</p>
+
+<p>
+ two key pieces of information, the text to be translated and the desired language or, more specificaly, the locale. In Jtwig this can also be mixed with a map of replacements used to replace all occurrences of a given key by its value.
+</p>
+
+
+<p style="text-align: justify;"> The
+</p>
+
+**Function ``translate``**
+
+<p style="text-align: justify;">
+This function has two other alias, they are <code>trans</code> and <code>message</code>. It expects one argument at least, with the possibility of receiving two extra, optional, arguments. The first mandatory argument is the text to be translated. 
 </p>
 
 ### Pluralization
