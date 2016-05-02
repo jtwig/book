@@ -110,15 +110,23 @@ The <code>resources()</code> method returns an instance of <code>AndResourceReso
 
 ```java
 EnvironmentConfiguration configuration = EnvironmentConfigurationBuilder
-                .configuration()
-                    .resources()
-                        .resourceResolvers().add(resourceResolver).and()
-                    .and()
-                .build();
+    .configuration()
+        .resources()
+            .resourceLoaders().add(typedResourceLoader).and()
+            .absoluteResourceTypes().add("string").and()
+            .relativeResourceResolvers().add(relativeResourceResolver).and()
+            .withResourceReferenceExtractor(extractor)
+            .withDefaultInputCharset(Charset.forName("UTF-8"))
+        .and()
+    .build();
 ```
 
 <p style="text-align: justify;">
-It's possible to specify multiple resources resolvers. Resource resolvers are detailed further on. A default input charset can also be provided, it will be used as the default input encoding for loaded resources. To understand what encoding gets used, the specific implementation of resource resolver must be analysed.
+The first configuration refered in the previous example is the <code>resourceLoaders</code> list builder, where multiple <code>TypedResourceLoader</code> can be specified. A <code>TypedResourceLoader</code> is a pair of reference type and the associated <code>ResourceLoader</code>. If multiple resource loaders are specified for the same type, Jtwig combines them together. The <code>absoluteResourceTypes</code> is a list builder where reference types can be marked as absolute. It's also possible to specify relative resources resolvers using <code>relativeResourceResolvers</code> list builder.
+</p>
+<p style="text-align: justify;">
+The resource reference extractor, is unlikely to be customized, but it extracts a given string representation of a resource reference into a pair of <code>(type, path)</code>. The default implementation is expecting references to be like <code>type:path</code> using <code>:</code> as separator.
+A default input charset can also be provided via <code>withDefaultInputCharset</code>, it will be used as the default input encoding for loaded templates.
 </p>
 
 ### ``render()``

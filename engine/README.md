@@ -5,19 +5,19 @@ Within this section one will detail how to work with Jtwig at it's core API. As 
 </p>
 
 ```
-Output = (Environment, Resource, Model)
+Output = (Environment, ResourceReference, Model)
 ```
 
 <p style="text-align: justify;">
-The <b>Environment</b> contains all Jtwig configurations and predefined behaviour, this includes possible extensions that might be added. The <b>Resource</b> contains the intermediate Jtwig representation, also known as Template and the <b>Model</b> is the container of key and value pairs which combined with the Template generates the output. We can break it down in the following way.
+The <b>Environment</b> contains all Jtwig configurations and predefined behaviour, this includes possible extensions that might be added. The <b>ResourceReference</b> contains the intermediate Jtwig representation, also known as Template and the <b>Model</b> is the container of key and value pairs which combined with the Template generates the output. We can break it down in the following way.
 </p>
 
 ```
-Template = (Environment, Resource)
+Template = (Environment, ResourceReference)
 ```
 
 <p style="text-align: justify;">
-Where, basically, the <code>Template</code> is the combination of the <b>Environment</b> with the <b>Resource</b>. This has special meaning when extensions are added and means some intermediate representations don't mean anything without the proper extension added to the <b>Environment</b>. Note that, one will detail about Extensions later on.
+Where, basically, the <code>Template</code> is the combination of the <b>Environment</b> with the <b>ResourceReference</b>. This has special meaning when extensions are added and means some intermediate representations don't mean anything without the proper extension added to the <b>Environment</b>. Note that, one will detail about Extensions later on.
 </p>
 
 ```
@@ -38,7 +38,10 @@ EnvironmentFactory environmentFactory = new EnvironmentFactory();
 Environment environment = environmentFactory.create(configuration);
 
 // Resource
-Resource resource = new StringResource("Hello {{ token }}!");
+ResourceReference resource = new ResourceReference(
+    ResourceReference.STRING, 
+    "Hello {{ token }}!"
+);
 
 // Template
 JtwigTemplate jtwigTemplate = new JtwigTemplate(environment, resource);
@@ -51,7 +54,7 @@ String output = jtwigTemplate.render(model);
 ```
 
 <p style="text-align: justify;">
-As one can see, the way Jtwig core API is built follows the same concepts mentioned before, where the <b>Enviornment</b> and <b>Resource</b> are first instantiated in order to create the <code>JtwigTemplate</code>, which when combined with the <code>JtwigModel</code> generates the output.
+As one can see, the way Jtwig core API is built follows the same concepts mentioned before, where the <b>Enviornment</b> and <b>ResourceReference</b> are first instantiated in order to create the <code>JtwigTemplate</code>, which when combined with the <code>JtwigModel</code> generates the output.
 </p>
 
 **``JtwigTemplate`` API**

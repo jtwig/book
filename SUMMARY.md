@@ -25,4 +25,6 @@
 * [Jtwig Web](web/README.md)
   * [Jtwig Spring](web/spring.md)
   * [Jtwig Spring Boot](web/spring-boot.md)
+* [Extensions](extensions/README.md)
+  * [Translate](extensions/translate.md)
 * [Glossary](GLOSSARY.md)

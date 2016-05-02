@@ -1,62 +1,60 @@
 # Resources
 
 <p style="text-align: justify;">
-Resources in Jtwig can be one of the following types:
+Resources in Jtwig are modeled as references. It uses the <code>ResourceReference</code> class to do so. A resource reference is a pair of type and path. For example:
 </p>
 
-- **`StreamResource`**, it's the most basic resource, it basically exposes a given stream as a Jtwig resource. Use this specific implementation with caution, be aware of `InputStream` statefull properties. Also this implementation has serious limitations when it comes to cache parsed Jtwig templates. Example:
+- ``file:/tmp/file.twig`` represents a reference with type ``file`` and path ``/tmp/file.twig``
+- ``classpath:template.twig`` refers to type ``classpath`` and path ``template.twig``.
 
-```java
-InputStream inputStream = new ...;
-Resource resource = new StreamResource(inputStream);
-```
-
-- **`StringResource`**, a resource supporting Jtwig Template specifications using a Java String. This type of resource is useful to specify templates inlined with the code.
-
-```java
-Resource resource = new StringResource("Hello {{ variable }}!");
-```
-
-- **`FileResource`**, as the name can tell, uses a file as the reference to retrieve a Jtwig template.
-
-```java
-Resource resource = new FileResource(new File("<path to file>"));
-```
-
-- **`ClasspathResource`**, similar to a `FileResource` but useful when one want to render a template located in the application classpath. The classpath resource relies on the implementation of a `ClasspathResourceLoader`, which provides an interface for loading classpath resources and has a default implementation (`DefaultClasspathResourceLoader`).
-
-```java
-ClasspathResourceLoader classpathResourceLoader = new ...;
-Resource resource = new ClasspathResource("<path>", classpathResourceLoader);
-```
-
-
-## Resource Resolver
+**Reference Type**
 
 <p style="text-align: justify;">
-A Resource Resolver is the Jtwig component that resolves Resources, such resource is identified by the parent Resource and a path.
+To represent the type one use a raw string, allowing for custom types to be introduced at configuration time. Each type must have an associated <code>ResourceLoader</code>, allowing one to, given a reference, perform different operations, like:
 </p>
 
-```java
-Optional<Resource> resolve(Environment environment, Resource resource, String path);
-```
+- **Load** reading the reference as an ``InputStream``.
+- **Exists** check if the given reference exists.
+- **URL** return the URL representation of the reference, if it exists.
+- **Charset** return the charset of such reference, if possible.
+
+**Types defined in Core**
 
 <p style="text-align: justify;">
-Note that it can only return a resource if it exists, otherwise it should return no result (<code>Optional::absent</code>).
+The Jtwig Core default configuration comes with three reference types, namely: 
 </p>
 
-**How it works?**
+- ``file``
+- ``classpath``
+- ``string``
+
+**Absolute Type vs Relative Type**
+
 <p style="text-align: justify;">
-While configuring Jtwig, has already shown in the Environment configuration, it's possible to specify multiple resource resolvers. Such list is then iterated in the same order they were added to the configuration, where the first resolver returning a non-empty result will be the one used.
+In Jtwig a reference type can either be relative or absolute, meaning that, relative path calculation is possible or not. For example, <code>file</code> and <code>classpath</code> types are relative types, while <code>string</code> is absolute.
 </p>
 
-**Default resolvers**
+**Relative Resource Resolver**
 
 <p style="text-align: justify;">
-When extending the default Jtwig configuration, it already comes with the following two resource resolvers:
+For relative reference types only the concept of relative resource resolver exists so that, using a given reference as base path, calculate the path to another reference.
 </p>
 
-1. ``FileResourceResolver``
-2. ``ClasspathResourceResolver``
+**The ``string`` reference**
 
+<p style="text-align: justify;">
+The <code>string</code> reference type is a special kind of reference where as path, one can provide, actually, a template definition. For example, the resource reference <code>string:{{ '{{ "hello world!" }}' }}</code> defines a resource with content <code>{{ '{{ "hello world!" }}' }}</code> which when rendered will produce <code>hello world!</code>.
+</p>
 
+**The ``any`` reference type**
+
+<p style="text-align: justify;">
+The resource resolution in Jtwig also allows one to refer to a given resource without specifying the type, as such, the defined type will be <code>any</code>, meaning a best effort approach will be used to load/resolve the given resource. For example to load the reference <code>/tmp/template.twig</code> (without the type) Jtwig will iterate over the list of <code>ResourceLoader</code> and the first one finding the resource will be used. For this is important the ordering defined during configuration. As default the ordering is as such:
+</p>
+
+- ``file`` with base directory as current working directory
+- ``classpath`` using jtwig-core ``ClassLoader``
+
+<p style="text-align: justify;">
+Note that, the <code>string</code> type is ignored for the purpose of resource lookup.
+</p>
