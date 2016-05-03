@@ -29,5 +29,5 @@
   * [Translate](extensions/translate.md)
   * [Render](extensions/render.md)
   * [JSON](extensions/json.md)
-* [Advanced](advanced/README.md)
+  * [Spaceless](extensions/spaceless.md)
 * [Glossary](GLOSSARY.md)

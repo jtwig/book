@@ -7,5 +7,4 @@ In this chapter one will mention the currently available extensions for Jtwig. T
 * Translate Extension
 * Render Extension
 * Json Extension
-* Cache Extension
 * Spaceless Extension
