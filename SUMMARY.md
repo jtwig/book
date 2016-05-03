@@ -27,4 +27,7 @@
   * [Jtwig Spring Boot](web/spring-boot.md)
 * [Extensions](extensions/README.md)
   * [Translate](extensions/translate.md)
+  * [Render](extensions/render.md)
+  * [JSON](extensions/json.md)
+* [Advanced](advanced/README.md)
 * [Glossary](GLOSSARY.md)
