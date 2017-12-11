@@ -140,7 +140,7 @@ Jtwig comes with several built in binary operators. Below, one will describe the
             </td>
             <td style="text-align: center;">5</td>
             <td>Multiplies two values.</td>
-            <td><code>2.2 * 2.2</code> outputs <code>4.4</code>
+            <td><code>5.0 * 2.5</code> outputs <code>12.5</code>
             </td>
         </tr>
         <tr>
@@ -149,7 +149,7 @@ Jtwig comes with several built in binary operators. Below, one will describe the
             </td>
             <td style="text-align: center;">5</td>
             <td>Multiplies the integer part of two values.</td>
-            <td><code>2.2 * 2.2</code> outputs <code>4</code>
+            <td><code>5.0 ** 2.5</code> outputs <code>10</code>
             </td>
         </tr>
         <tr>
@@ -158,7 +158,7 @@ Jtwig comes with several built in binary operators. Below, one will describe the
             </td>
             <td style="text-align: center;">5</td>
             <td>Divides two values.</td>
-            <td><code>2.2 * 2.2</code> outputs <code>1.1</code>
+            <td><code>5.0 / 2.5</code> outputs <code>2</code>
             </td>
         </tr>
         <tr>
@@ -167,7 +167,7 @@ Jtwig comes with several built in binary operators. Below, one will describe the
             </td>
             <td style="text-align: center;">5</td>
             <td>Divides the integer part of two values.</td>
-            <td><code>2.2 * 2.2</code> outputs <code>1</code>
+            <td><code>5.0 // 2.5</code> outputs <code>2.5</code>
             </td>
         </tr>
         <tr>
